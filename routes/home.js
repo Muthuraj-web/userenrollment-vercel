@@ -8,8 +8,7 @@ router.get("/com.apple.remotemanagement", (req, res) => {
   const inputStream = Buffer.from(responseText);
 
   const responseHeaders = {
-    "Content-Type": "application/json",
-    "Content-Length": inputStream.length
+    "Content-Type": "application/json"
   };
 
   console.log(inputStream.length);
