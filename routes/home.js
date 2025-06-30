@@ -18,4 +18,18 @@ router.get("/com.apple.remotemanagement", (req, res) => {
   res.end();
 });
 
+
+router.get("/redirectedDEPJSON", (req, res) => {
+	try {
+		const pssoJSON = '{"code":"com.apple.psso.required","description":"MDM Server requires the user to authenticate with Identity Provider - BY MEMDM","message":"The MDM server requires you to authenticate with your Identity Provider. Please follow the instructions provided by your organization to complete the authentication process - BY MEMDM","details":{"Package":{"ManifestURL":"https://platformsso-profile-url-824074885.development.catalystserverless.com/server/Platform-SSO-Profile/manifest"},"ProfileURL":"https://platformsso-profile-url-824074885.development.catalystserverless.com/server/Platform-SSO-Profile/profile","AuthURL":"https://platformsso-profile-url-824074885.development.catalystserverless.com/server/Platform-SSO-Profile/auth"}}';
+		const inputStream = Buffer.from(pssoJSON);
+		const responseHeaders = {"Content-Type": "application/json"};
+  	res.writeHead(403, responseHeaders);
+		res.write(inputStream);
+		res.end();
+	} catch (err) {
+		console.error('Error reading file:', err);
+	}
+})
+
 module.exports = router;
